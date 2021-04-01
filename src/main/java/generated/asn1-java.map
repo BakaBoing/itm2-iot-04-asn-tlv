@@ -1,0 +1,13 @@
+[
+{ "asn1": "asn.WeatherDataPoint", "java": "weatherdataprotocol.asn.WeatherDataPoint" }
+,
+{ "asn1": "asn.WeatherData", "java": "weatherdataprotocol.asn.WeatherData" }
+,
+{ "asn1": "ReqData", "java": "weatherdataprotocol.ReqData" }
+,
+{ "asn1": "ReqCmd", "java": "weatherdataprotocol.ReqCmd" }
+,
+{ "asn1": "Ack", "java": "weatherdataprotocol.Ack" }
+,
+{ "asn1": "AckState", "java": "weatherdataprotocol.AckState" }
+]

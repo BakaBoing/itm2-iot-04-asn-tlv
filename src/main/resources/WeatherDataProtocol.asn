@@ -1,0 +1,45 @@
+-- https://asn1.io --
+-- https://www.oss.com/asn1/resources/asn1-made-simple/introduction.html --
+WeatherDataProtocol DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+	WeatherDataPoint ::= SEQUENCE {
+	    dataTimestampUTC DATE-TIME,
+        timezone INTEGER (-12 .. 12) DEFAULT 1,
+        -- deci kelvin
+        temperatureDecKel INTEGER DEFAULT 0,
+        -- mgm3 (milligrams per cubic meter)
+        humidityMgm3 INTEGER DEFAULT 0
+	}
+
+	WeatherData ::= SEQUENCE {
+	    version INTEGER (1 .. 16) DEFAULT 1,
+	    stationId INTEGER DEFAULT -1,
+	    weatherData SEQUENCE (SIZE (1..10)) OF WeatherDataPoint
+	}
+
+	ReqData ::= SEQUENCE {
+		version INTEGER (1 .. 16) DEFAULT 1,
+		messageTimestamp DATE-TIME,
+		msgNum INTEGER (1 .. 65535),
+		requestedDataBeginTimestamp DATE-TIME,
+		requestedDataEndTimestamp DATE-TIME
+	}
+
+    ReqCmd ::= SEQUENCE {
+        version INTEGER (1 .. 16) DEFAULT 1,
+        messageTimestamp DATE-TIME,
+        msgNum INTEGER (1 .. 65535),
+        commandNumber INTEGER (1 .. 16)
+    }
+
+	Ack ::= SEQUENCE {
+		version INTEGER (1 .. 16) DEFAULT 1,
+		messageTimestamp DATE-TIME,
+		msgNum INTEGER (1 .. 65535),
+		state AckState
+	}
+
+    AckState ::= ENUMERATED {
+        ack, nak
+    }
+END
